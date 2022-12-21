@@ -1,0 +1,31 @@
+.product-image {
+  object-fit: cover;
+}
+
+body {
+  margin-top: 5rem !important;
+}
+
+.sticky-top {
+  top: 4rem !important;
+}
+
+.inline-btn-wrapper {
+  padding-top: 1.9em;
+}
+
+.img-profile {
+  height: 200px !important;
+  object-fit: cover;
+  margin-top: 1rem;
+}
+
+.dim-text {
+  font-size: 10px;
+  color: gray;
+}
+
+.form-label {
+  font-size: 11px !important;
+  color: gray;
+}

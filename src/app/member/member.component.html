@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand shadow-sm bg-info fixed-top">
+  <div class="container-fluid">
+    <a [routerLink]="['/']" class="navbar-brand">
+      <i class="bi-briefcase"></i> Traders
+    </a>
+
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+        <a [routerLink]="['/member', 'profile', 'products']" routerLinkActive="active" class="nav-link">
+          <i class="bi-gift"></i> Product
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/member', 'sale', 'list', 'sale']" routerLinkActive="active"  class="nav-link">
+          <i class="bi-cart"></i> Sales
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/member', 'sale', 'list', 'purchase']" routerLinkActive="active" class="nav-link">
+          <i class="bi-bucket"></i> Purchases
+        </a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" >
+          <i class="bi-person"></i> {{userName}}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <a [routerLink]="['/member', 'message', 'list', 'in']" class="dropdown-item">
+              <i class="bi-chat-dots"></i> Message Received
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/member', 'message', 'list', 'out']" class="dropdown-item">
+              <i class="bi-chat"></i> Message Send
+            </a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <a [routerLink]="['/member', 'profile', 'edit']"  class="dropdown-item">
+              <i class="bi-person-check"></i> Edit Profile
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/member', 'profile', 'changepass']" class="dropdown-item">
+              <i class="bi-key-fill"></i> Change Password
+            </a>
+          </li>
+          <li>
+            <a href="#" (click)="signOut()" class="dropdown-item">
+              <i class="bi-door-closed"></i> Sign Out
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main class="container-fluid mt-4">
+
+  <div *ngIf="info.message" class="alert alert-info" >
+    {{info.message}}
+  </div>
+
+  <div class="row">
+
+    <nav *ngIf="layout.left" class="col-3">
+      <div class="sticky-top">
+        <app-category-list></app-category-list>
+      </div>
+    </nav>
+
+    <section class="col">
+      <router-outlet (activate)="routeActivated($event)"></router-outlet>
+    </section>
+
+    <section *ngIf="layout.right" class="col-3">
+      <div class="sticky-top">
+        <app-top-sellers></app-top-sellers>
+      </div>
+    </section>
+
+  </div>
+
+</main>

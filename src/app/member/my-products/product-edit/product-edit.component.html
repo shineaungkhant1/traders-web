@@ -1,0 +1,37 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a routerLink="info" routerLinkActive="active" [queryParams]="{full: true}" class="nav-link">Product Infomation</a>
+  </li>
+  <li class="nav-item">
+    <a routerLink="features" routerLinkActive="active" [queryParams]="{full: true}" class="nav-link">Other Features</a>
+  </li>
+  <li class="nav-item" *ngIf="state.form.get('id')?.value > 0">
+    <a routerLink="photos" routerLinkActive="active" [queryParams]="{full: true}" class="nav-link">Photos</a>
+  </li>
+</ul>
+
+<div class="mt-4 mb-4">
+  <router-outlet></router-outlet>
+</div>
+
+<div>
+  <button (click)="state.readonly = false" *ngIf="state.readonly" class="btn btn-outline-primary me-2">
+    <i class="bi-pencil"></i> Edit
+  </button>
+  <button *ngIf="!state.readonly" (click)="state.readonly = true" class="btn btn-outline-primary me-2">
+    <i class="bi-arrow-left"></i> Cancel
+  </button>
+  <button *ngIf="showAddFeaturesBtn" (click)="state.addFeature()" [class.disabled]="!state.features.valid" class="btn btn-outline-primary me-2">
+    <i class="bi-plus-lg"></i> Add Feature
+  </button>
+  <button *ngIf="state.form.get('id')?.value > 0" (click)="image.click()" class="btn btn-outline-primary me-2">
+    <i class="bi-camera"></i> Upload Photos
+  </button>
+  <button (click)="save()" *ngIf="!state.readonly" [class.disabled]="!state.form.valid" class="btn btn-outline-primary ">
+    <i class="bi-save"></i> Save
+  </button>
+</div>
+
+<form class="d-none">
+  <input type="file" #image multiple="true" (change)="uploadImage(image.files)">
+</form>

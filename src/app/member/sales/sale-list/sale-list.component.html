@@ -1,0 +1,50 @@
+<h3><i class="bi-cart"></i> My {{type == 'sale' ? 'Sales' : 'Purchases'}}</h3>
+
+<form class="my-4 row g-2" [formGroup]="form">
+  <div class="col-auto">
+    <select formControlName="status" class="form-select">
+      <option value="">All Status</option>
+      <option *ngFor="let item of statuses" [value]="item">{{item}}</option>
+    </select>
+  </div>
+
+  <div class="col-4">
+    <input formControlName="keyword" type="text" class="form-control" placeholder="Search Keyword">
+  </div>
+
+  <div class="col">
+    <button class="btn btn-outline-info" (click)="search()">
+      <i class="bi-search"></i> Search
+    </button>
+  </div>
+</form>
+
+<app-no-items *ngIf="list.length == 0" message="There is no {{type == 'sale' ? 'sales' : 'purchases'}}."></app-no-items>
+
+<table *ngIf="list.length > 0" class="table table-hover">
+  <thead>
+    <tr>
+      <th>{{type == 'sale' ? 'Buyer' : 'Seller'}}</th>
+      <th>Category</th>
+      <th>Product</th>
+      <th>Condition</th>
+      <th>Status</th>
+      <th>Status Change Date</th>
+      <th class="text-end">Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let item of list" (click)="showDetails(item.id)" (click)="showDetails(item.id)" >
+      <td>{{type == 'sale' ? item.buyer : item.seller}}</td>
+      <td>{{item.category}}</td>
+      <td>{{item.product}}</td>
+      <td>{{item.condition}}</td>
+      <td>{{item.status}}</td>
+      <td>{{item.statusChangeDate | date : 'yyyy-MM-dd HH:mm'}}</td>
+      <td class="text-end">{{item.price | number}} MMK</td>
+    </tr>
+  </tbody>
+</table>
+
+

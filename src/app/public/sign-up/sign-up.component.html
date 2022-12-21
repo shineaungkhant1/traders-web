@@ -1,0 +1,38 @@
+<div class="card">
+  <h4 class="card-header">Member Sign Up</h4>
+
+  <form [formGroup]="form" class="card-body">
+    <div class="mb-2">
+      <label class="form-label">Member Name</label>
+      <div class="input-group">
+        <i class="bi-person input-group-text"></i>
+        <input formControlName="name" type="text" class="form-control" placeholder="Enter Name">
+      </div>
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Email</label>
+      <div class="input-group">
+        <i class="bi-envelope input-group-text"></i>
+        <input formControlName="email" type="email" class="form-control" placeholder="Enter Email Address">
+      </div>
+    </div>
+
+    <div class="mb-2">
+      <label class="form-label">Password</label>
+      <div class="input-group">
+        <i class="bi-key input-group-text"></i>
+        <input formControlName="password" type="password" class="form-control" placeholder="Enter Password">
+      </div>
+    </div>
+
+    <div class="pt-3">
+      <a [routerLink]="['/public', 'signin']" [queryParams]="queryString" class="btn btn-outline-secondary me-2">
+        <i class="bi-person-check"></i> Sign In
+      </a>
+      <button (click)="signUp()" class="btn btn-outline-secondary me-2" [class.disabled]="!form.valid" >
+        <i class="bi-person-plus"></i> Sign Up
+      </button>
+    </div>
+  </form>
+</div>
